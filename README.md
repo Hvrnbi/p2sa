@@ -7,7 +7,7 @@ This is a Rust rewriting of a [project i did for school](https://github.com/Hvrn
 
 # CLI tool installation
 
-* Coming soon *
+_ Coming soon _
 
 # Library usage
 
