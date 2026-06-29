@@ -17,6 +17,10 @@ You can now use it in your terminal with this command :
 p2sa your-src-image-path output-path output-width output-height nails-count
 ```
 
+# Demo
+
+![Demo video](images/p2sa-demo.mp4)
+
 # Library usage
 
 ⚠️ This crate is not published yet, this guide is not working at the moment ⚠️
