@@ -2,6 +2,14 @@
 name = "p2sa"
 version = "0.1.0"
 edition = "2024"
+description = "A Rust library and a CLI tool to transform your pictures into String Art 🧵"
+repository = "https://github.com/Hvrnbi/p2sa"
+readme = "README.md"
+keywords = ["string art", "string art generator"]
+categories = ["multimedia", "multimedia::images"]
+license = "MIT"
+license-file = "LICENSE"
+
 
 [dependencies]
 clap = { version = "4.6.1", features = ["derive"] }
