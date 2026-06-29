@@ -19,7 +19,7 @@ p2sa your-src-image-path output-path output-width output-height nails-count
 
 # Demo
 
-![Demo video](images/p2sa-demo.mp4)
+![Demo video](https://youtu.be/Dp0gQjPNf40)
 
 # Library usage
 
