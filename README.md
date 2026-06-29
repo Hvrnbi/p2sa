@@ -43,7 +43,7 @@ fn main() {
 
 # Features
 
-- BMP, GIF, ICO, JPEG, PNG, WebP, and more format supported (SVG coming soon !)
+- SVG, BMP, GIF, ICO, JPEG, PNG, WebP, and more format supported
 - Custom output resolution supported
 - Custom number of nails supported
 
@@ -58,6 +58,7 @@ It's in french but may be translated.
 
 # Usage advices
 
+I recommend trying to set the output format to SVG, it produces cleaner images because it is vector-based.
 If the output lacks details, you may want to increase the nails count.
 It may take some time (a few minutes) if you try to obtain an image of more than 2000x2000 px and more than 600 nails.
 You can obtain nice results with smaller resolutions.

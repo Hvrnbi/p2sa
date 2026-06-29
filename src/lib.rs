@@ -1,4 +1,5 @@
 use image::{GrayImage, Luma, imageops::FilterType::Nearest};
+use svg::{Document, node::element::Path, node::element::path::Data, node::element::Rectangle};
 
 /** Import a picture, resize it, and convert it to Greyscale */
 fn import_picture(path: &String, new_size: [u32; 2], edge_detection: bool) -> GrayImage {
@@ -243,6 +244,17 @@ pub fn p2sa(src_path: String, output_path: String, new_size: [u32; 2], nails_cou
 
     let mut first_err_red: f32 = 0.;
 
+    let is_svg: bool;
+    let mut svg_data: Data = Data::new();
+
+    if &output_path[output_path.len() - 4..output_path.len()] == ".svg" {
+        is_svg = true;
+        svg_data = svg_data
+            .move_to((start[0], start[1]));
+    } else {
+        is_svg = false;
+    }
+
     while err_rising_cnt < 3 {
         let best_nail_and_err_red: ([u32; 2], f32) = find_best_line(&src_img, &new_img, start, nails.clone());
         let best_nail: [u32; 2] = best_nail_and_err_red.0;
@@ -261,11 +273,44 @@ pub fn p2sa(src_path: String, output_path: String, new_size: [u32; 2], nails_cou
 
         new_img = draw_line(new_img, start, best_nail);
 
+        if is_svg {
+            svg_data = svg_data.line_to((start[0], start[1]));
+        }
+
         start = best_nail;
         lines_cnt += 1;
     }
 
-    println!("{} lines drawn", lines_cnt);
+    svg_data = svg_data.close();
 
-    let _ = new_img.save(output_path);
+    if is_svg {
+
+        let svg_bg = Rectangle::new()
+            .set("width", new_size[0])
+            .set("height", new_size[1])
+            .set("x", 0)
+            .set("y", 0)
+            .set("fill", "white")
+            .set("stroke", "none");
+
+        let svg_path = Path::new()
+            .set("fill", "none")
+            .set("stroke", "black")
+            .set("stroke-width", 1)
+            .set("stroke-opacity", 0.2)
+            .set("d", svg_data);
+
+        let svg_document = Document::new()
+            .set("viewbox", (0, 0, new_size[0], new_size[1]))
+            .set("width", new_size[0])
+            .set("height", new_size[1])
+            .add(svg_bg)
+            .add(svg_path);
+
+        let _ = svg::save(&output_path, &svg_document);
+    } else {
+        let _ = new_img.save(output_path);
+    }
+
+    println!("{} lines drawn", lines_cnt);
 }
