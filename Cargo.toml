@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+clap = { version = "4.6.1", features = ["derive"] }
 edge-detection = "0.3.0"
 fastrand = "2.4.1"
 image = "0.25.10"

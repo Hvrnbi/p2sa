@@ -7,7 +7,15 @@ This is a Rust rewriting of a [project i did for school](https://github.com/Hvrn
 
 # CLI tool installation
 
-*Coming soon*
+The easiest way to install p2as is to use [cargo](https://doc.rust-lang.org/cargo/index.html) with this command :
+```shell
+cargo install p2sa
+```
+
+You can now use it in your terminal with this command :
+```shell
+p2sa your-src-image-path output-path output-width output-height nails-count
+```
 
 # Library usage
 
@@ -24,6 +32,7 @@ You can now call the p2sa function :
 use p2sa::p2sa;
 
 fn main() {
+    // p2sa(src_path: String, output_path: String, output_size: [u32; 2], nails_count: u32);
     p2sa("path/to/your/picture.png".to_string(), "path/to/your/result.png".to_string(), [1024, 1024], 400);
 }
 ```
@@ -42,6 +51,12 @@ It chooses the line that reduces the difference the most, and repeat this steps 
 
 For more details, you can check [the wiki page of my school project](http://os-vps418.infomaniak.ch:1250/mediawiki/index.php/Filage_d'image_et_trac%C3%A9_de_droites_pour_un_rendu_artistique).
 It's in french but may be translated.
+
+# Usage advices
+
+If the output lacks details, you may want to increase the nails count.
+It may take some time (a few minutes) if you try to obtain an image of more than 2000x2000 px and more than 600 nails.
+You can obtain nice results with smaller resolutions.
 
 # Thanks
 

@@ -241,11 +241,17 @@ pub fn p2sa(src_path: String, output_path: String, new_size: [u32; 2], nails_cou
     let mut err_rising_cnt: u8 = 0;
     let mut lines_cnt: u16 = 0;
 
+    let mut first_err_red: f32 = 0.;
+
     while err_rising_cnt < 3 {
         let best_nail_and_err_red: ([u32; 2], f32) = find_best_line(&src_img, &new_img, start, nails.clone());
         let best_nail: [u32; 2] = best_nail_and_err_red.0;
+
+        if lines_cnt == 0 {
+            first_err_red = best_nail_and_err_red.1;
+        }
         
-        println!("Error reduction : {}", best_nail_and_err_red.1);
+        println!("Progress estimation : {} %", (best_nail_and_err_red.1 - first_err_red) * 100. / - first_err_red);
 
         if best_nail_and_err_red.1 >= 0. {
             err_rising_cnt += 1;
