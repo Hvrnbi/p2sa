@@ -7,7 +7,6 @@ repository = "https://github.com/Hvrnbi/p2sa"
 readme = "README.md"
 keywords = ["string art", "string art generator"]
 categories = ["multimedia", "multimedia::images"]
-license = "MIT"
 license-file = "LICENSE"
 
 
